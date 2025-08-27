@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <linearGradient id="g3" x1="0" x2="1">
+      <stop offset="0%" stop-color="#00c2a8"/>
+      <stop offset="100%" stop-color="#0077b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#g3)"/>
+  <g transform="translate(260,220)">
+    <rect x="0" y="200" width="1400" height="640" rx="18" fill="#021124" opacity="0.08"/>
+    <rect x="120" y="60" width="1160" height="560" rx="12" fill="#071a2b"/>
+    <g transform="translate(180,120)">
+      <rect width="860" height="360" rx="6" fill="#fff" opacity="0.06"/>
+      <text x="30" y="60" fill="#fff" font-size="44" font-family="Poppins, Arial">Crafting Experiences</text>
+    </g>
+  </g>
+</svg>
