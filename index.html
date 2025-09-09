@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="google-site-verification" content="QEVxhZx_caBEbssB9JtUWSzoamGFVdNuW-WMWiMKdls" />
-  <title>Asare Fredinald | Developer</title>
+  <meta name="google-site-verification" content="KETL3I2tbmgf-7fEvEzvNuqUvs6ZSFrylJzmqOKbvGg" />
+  <meta name="description" content="Asare Fredinald - Professional React & React Native Developer specializing in modern web and mobile applications. KNUST Student creating digital solutions." />
+  <meta name="keywords" content="React Developer, React Native, Web Development, Mobile Apps, JavaScript, HTML, CSS, KNUST, Ghana" />
+  <title>Asare Fredinald | Professional Developer</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="logo.svg" type="image/svg" />
+  <link rel="icon" href="img/favicon.ico" type="image/ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Modern Navigation -->
@@ -39,122 +44,521 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="hero" role="region" aria-label="Hero slider">
-    <div class="slider hero-slider" aria-hidden="false">
-      <div class="slides">
-        <div class="slide"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Happy professional developer smiling"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Happy professional developer smiling"></div>
-        <div class="slide"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Happy professional developer smiling"></div>
-      </div>
+  <section class="hero" role="region" aria-label="Hero section">
+    <div class="hero-background">
+      <div class="hero-particles"></div>
+      <div class="hero-gradient"></div>
     </div>
 
     <div class="hero-content">
-      <h1>Hi, I'm <span>Asare Fredinald</span></h1>
-      <p>React & React Native Developer | KNUST Student</p>
-      <a href="portfolio.html" class="btn">View My Work</a>
-      <p class="work-highlights">Work Highlights</p>
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="hero-greeting">Hello, I'm</span>
+          <span class="hero-name">Asare Fredinald</span>
+        </h1>
+        <p class="hero-role">Professional Developer & Digital Solutions Architect</p>
+        <p class="hero-description">I create exceptional web and mobile experiences that drive business growth and user engagement</p>
+        
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn btn-primary">View My Work</a>
+          <a href="#contact" class="btn btn-outline">Let's Talk</a>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number" data-target="6">0</span>
+            <span class="stat-label">Companies Founded</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" data-target="14">0</span>
+            <span class="stat-label">Projects Completed</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" data-target="4">0</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number" data-target="99">0</span>
+            <span class="stat-label">Client Satisfaction %</span>
+          </div>
+        </div>
     </div>
 
-    <!-- Slider navigation buttons -->
-    <div class="slider-nav">
-      <button class="nav-btn prev" aria-label="Previous slide">‹</button>
-      <button class="nav-btn next" aria-label="Next slide">›</button>
+      <div class="hero-visual">
+        <div class="hero-image-container">
+          <img src="img/ava.png" alt="Asare Fredinald" class="hero-image">
+          <div class="hero-image-glow"></div>
+        </div>
+        <div class="floating-elements">
+          <div class="floating-element element-1">⚛️</div>
+          <div class="floating-element element-2">📱</div>
+          <div class="floating-element element-3">💻</div>
+          <div class="floating-element element-4">🚀</div>
+        </div>
+      </div>
     </div>
 
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
+      <span>Scroll to explore</span>
+    </div>
   </section>
 
-  <!-- ===== PROJECTS SHOWCASE (moved inside index) ===== -->
-<section id="projects" class="section projects-showcase">
-  <h2 class="section-title">Projects Showcase</h2>
-  <div class="projects-grid">
-
-    <!-- Hostel Manager -->
-    <a href="portfolio.html" class="project-card project-link" title="Hostel Manager">
-      <img src="img/flint.png" alt="Hostel Manager">
-      <div class="project-card-content"><h3>🏠 Hostel Manager</h3><p>Room allocation, fee tracking and admin dashboard.</p></div>
-    </a>
-
-    <!-- Church Manager -->
-    <a href="portfolio.html" class="project-card project-link" title="Church Manager">
-      <img src="img/chum.png" alt="Church Manager">
-      <div class="project-card-content"><h3>⛪ Church Manager</h3><p>Member management, events and finance tracking.</p></div>
-    </a>
-
-    <!-- Artisan Connect -->
-    <a href="portfolio.html" class="project-card project-link" title="Artisan Connect">
-      <img src="img/artlink.png" alt="Artisan Connect">
-      <div class="project-card-content"><h3>🔧 Artisan Connect</h3><p>Marketplace connecting artisans and clients.</p></div>
-    </a>
-
+  <!-- Services Section -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">What I Do</h2>
+        <p class="section-subtitle">Comprehensive digital solutions tailored to your business needs</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">
+            <div class="icon-wrapper">💻</div>
+          </div>
+          <h3>Web Development</h3>
+          <p>Modern, responsive websites built with React, HTML5, CSS3, and JavaScript. Fast, secure, and SEO-optimized.</p>
+          <ul class="service-features">
+            <li>React & Next.js Applications</li>
+            <li>Responsive Design</li>
+            <li>Performance Optimization</li>
+            <li>SEO & Analytics</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <div class="icon-wrapper">📱</div>
+          </div>
+          <h3>Mobile Development</h3>
+          <p>Cross-platform mobile apps using React Native. Native performance with shared codebase for iOS and Android.</p>
+          <ul class="service-features">
+            <li>React Native Apps</li>
+            <li>iOS & Android</li>
+            <li>App Store Deployment</li>
+            <li>Push Notifications</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <div class="icon-wrapper">🎨</div>
+          </div>
+          <h3>UI/UX Design</h3>
+          <p>Beautiful, intuitive user interfaces that enhance user experience and drive engagement.</p>
+          <ul class="service-features">
+            <li>User Interface Design</li>
+            <li>User Experience</li>
+            <li>Prototyping</li>
+            <li>Design Systems</li>
+          </ul>
+        </div>
+        
+        <div class="service-card">
+          <div class="service-icon">
+            <div class="icon-wrapper">🔧</div>
+          </div>
+          <h3>Custom Solutions</h3>
+          <p>Tailored business applications including management systems, dashboards, and automation tools.</p>
+          <ul class="service-features">
+            <li>Management Systems</li>
+            <li>Admin Dashboards</li>
+            <li>Database Design</li>
+            <li>API Integration</li>
+          </ul>
+        </div>
+      </div>
   </div>
 </section>
 
-  <!-- ===== Core Solutions Section ===== -->
-<section id="solutions" class="solutions-section">
-  <h2 class="section-title">Solutions I Provide</h2>
-  <div class="solutions-container">
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="portfolio-section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Our Work & Expertise</h2>
+        <p class="section-subtitle">Explore our portfolio of successful projects and core technologies</p>
+      </div>
+      
+      <div class="portfolio-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="projects">Projects</button>
+        <button class="filter-btn" data-filter="skills">Technologies</button>
+      </div>
+      
+      <div class="portfolio-grid portfolio-3x3">
+        <!-- Projects -->
+        <div class="portfolio-item project-card" data-category="projects">
+          <div class="portfolio-image">
+            <img src="img/flint.png" alt="Hostel Manager">
+            <div class="portfolio-overlay">
+              <div class="portfolio-actions">
+                <a href="portfolio.html" class="portfolio-link">View Details</a>
+                <a href="#" class="portfolio-demo">Live Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Hostel Manager</h3>
+            <p>Complete hostel management system with room allocation, fee tracking, and admin dashboard.</p>
+            <div class="portfolio-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Node.js</span>
+              <span class="tech-tag">MongoDB</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="portfolio-item project-card" data-category="projects">
+          <div class="portfolio-image">
+            <img src="img/chum.png" alt="Church Manager">
+            <div class="portfolio-overlay">
+              <div class="portfolio-actions">
+                <a href="portfolio.html" class="portfolio-link">View Details</a>
+                <a href="#" class="portfolio-demo">Live Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Church Manager</h3>
+            <p>Comprehensive church management solution for member tracking, events, and finances.</p>
+            <div class="portfolio-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Firebase</span>
+              <span class="tech-tag">CSS3</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="portfolio-item project-card" data-category="projects">
+          <div class="portfolio-image">
+            <img src="img/artlink.png" alt="Artisan Connect">
+            <div class="portfolio-overlay">
+              <div class="portfolio-actions">
+                <a href="portfolio.html" class="portfolio-link">View Details</a>
+                <a href="#" class="portfolio-demo">Live Demo</a>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Artisan Connect</h3>
+            <p>Marketplace platform connecting artisans with clients for seamless service delivery.</p>
+            <div class="portfolio-tech">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Express</span>
+              <span class="tech-tag">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
 
-    <!-- Hostel Management -->
-    <div class="solution-card">
-      <div class="icon">🏨</div>
-      <div>
-        <h3>Hostel Management Solutions</h3>
-        <p>Smart digital systems to simplify student bookings, payments, and hostel administration. Designed with automation and ease of use in mind.</p>
+        <!-- Skills as Cards with Different Colors -->
+        <div class="portfolio-item skill-card skill-react" data-category="skills">
+          <div class="skill-card-content">
+            <div class="skill-icon">⚛️</div>
+            <h3>React</h3>
+            <p>Modern UI library for building interactive user interfaces</p>
+            <div class="skill-level">
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="95"></div>
+              </div>
+              <span class="skill-percentage">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item skill-card skill-react-native" data-category="skills">
+          <div class="skill-card-content">
+            <div class="skill-icon">📱</div>
+            <h3>React Native</h3>
+            <p>Cross-platform mobile development framework</p>
+            <div class="skill-level">
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="90"></div>
+              </div>
+              <span class="skill-percentage">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item skill-card skill-javascript" data-category="skills">
+          <div class="skill-card-content">
+            <div class="skill-icon">💻</div>
+            <h3>JavaScript</h3>
+            <p>Core programming language for web development</p>
+            <div class="skill-level">
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="95"></div>
+              </div>
+              <span class="skill-percentage">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item skill-card skill-prompt-engineering" data-category="skills">
+          <div class="skill-card-content">
+            <div class="skill-icon">🤖</div>
+            <h3>Prompt Engineering</h3>
+            <p>Design effective AI prompts to automate workflows, generate content, and prototype intelligent features quickly</p>
+            <div class="skill-level">
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="80"></div>
+              </div>
+              <span class="skill-percentage">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item skill-card skill-firebase" data-category="skills">
+          <div class="skill-card-content">
+            <div class="skill-icon">🔥</div>
+            <h3>Firebase</h3>
+            <p>Backend-as-a-Service platform for web and mobile apps</p>
+            <div class="skill-level">
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="88"></div>
+              </div>
+              <span class="skill-percentage">0%</span>
+            </div>
       </div>
     </div>
 
-    <!-- Church Management -->
-    <div class="solution-card">
-      <div class="icon">⛪</div>
-      <div>
-        <h3>Church Management Solutions</h3>
-        <p>Manage members, events, finances, and communications — all in one streamlined application tailored for ministries.</p>
+        <div class="portfolio-item skill-card skill-nodejs" data-category="skills">
+          <div class="skill-card-content">
+            <div class="skill-icon">⚡</div>
+            <h3>Node.js</h3>
+            <p>Server-side JavaScript runtime for scalable applications</p>
+            <div class="skill-level">
+              <div class="skill-bar">
+                <div class="skill-progress" data-width="82"></div>
+              </div>
+              <span class="skill-percentage">0%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <div class="section-header">
+            <h2 class="section-title">About Me</h2>
+            <p class="section-subtitle">Passionate developer creating digital solutions that matter</p>
+          </div>
+          
+          <div class="about-description">
+            <p>Hello! I'm <strong>Asare Fredinald</strong>, a passionate developer and KNUST student focused on building thoughtful, modern digital solutions. I specialize in <strong>React</strong> and <strong>React Native</strong> for fast, component-driven user interfaces, and I use core web technologies like <strong>HTML</strong>, <strong>CSS</strong> and <strong>JavaScript</strong> to craft pixel-perfect, responsive experiences.</p>
+            
+            <p>My approach blends practical engineering with strong UX sensibilities: I prioritize clarity, performance and maintainability. I've built solutions that automate room allocation, fee tracking, member management, event scheduling and payment workflows.</p>
+            
+            <p>As a developer, I value communication and reliability — delivering production-ready apps on schedule and ensuring clients can manage and extend their systems. I enjoy collaborating closely with users to translate their needs into features and iterate quickly based on feedback.</p>
+          </div>
+          
+          <div class="about-stats">
+            <div class="stat-item">
+              <div class="stat-number" data-target="6">0</div>
+              <div class="stat-label">Companies Founded</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="14">0</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="4">0</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" data-target="95">0</div>
+              <div class="stat-label">Client Satisfaction %</div>
+            </div>
       </div>
     </div>
 
+        <div class="about-visual">
+          <div class="company-showcase">
+            <h3>Our Companies</h3>
+            <div class="company-cards">
+              <div class="company-card">
+                <div class="company-icon">🏢</div>
+                <h4>AVASCOTT Group</h4>
+                <p>Leading technology solutions provider across multiple industries</p>
+              </div>
+              <div class="company-card">
+                <div class="company-icon">💼</div>
+                <h4>AvaScottInc</h4>
+                <p>Innovative software development and digital transformation services</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </section>
 
-<!-- ===== Testimonials ===== -->
-<section id="testimonials" class="section testimonials-section">
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials-section">
+    <div class="container">
+      <div class="section-header">
   <h2 class="section-title">What Clients Say</h2>
+        <p class="section-subtitle">Trusted by businesses and organizations</p>
+      </div>
+      
   <div class="testimonials-grid">
     <div class="testimonial-card">
-      <p class="quote">"The Hostel Manager app transformed our booking process — reduced manual work and helped us track payments effortlessly."</p>
-      <p class="author">— K. Mensah, Hall Administrator</p>
+          <div class="testimonial-content">
+            <div class="quote-icon">"</div>
+            <p class="quote">The Hostel Manager app transformed our booking process — reduced manual work and helped us track payments effortlessly.</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>K. Mensah</h4>
+              <span>Hall Administrator</span>
+            </div>
+            <div class="rating">★★★★★</div>
+          </div>
     </div>
+        
     <div class="testimonial-card">
-      <p class="quote">"The Church Management Solution improved member communication and finance tracking. Highly recommended."</p>
-      <p class="author">— Rev. A. Boateng</p>
+          <div class="testimonial-content">
+            <div class="quote-icon">"</div>
+            <p class="quote">The Church Management Solution improved member communication and finance tracking. Highly recommended.</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Rev. A. Boateng</h4>
+              <span>Church Leader</span>
+            </div>
+            <div class="rating">★★★★★</div>
+          </div>
     </div>
+        
     <div class="testimonial-card">
-      <p class="quote">"Fredinald delivered a beautiful app on time. Our users love the interface and responsiveness."</p>
-      <p class="author">— Y. Owusu, Small Business Owner</p>
+          <div class="testimonial-content">
+            <div class="quote-icon">"</div>
+            <p class="quote">Fredinald delivered a beautiful app on time. Our users love the interface and responsiveness.</p>
+          </div>
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h4>Y. Owusu</h4>
+              <span>Small Business Owner</span>
+            </div>
+            <div class="rating">★★★★★</div>
+          </div>
+        </div>
     </div>
   </div>
 </section>
 
-<!-- ===== Contact Section (single unified form) ===== -->
+  <!-- Contact Section -->
 <section id="contact" class="contact-section">
-  <h2 class="section-title">Get In Touch</h2>
-  <p>Interested in my solutions? Use the form below to ask questions, request a demo, or request to purchase a software product. Purchase requests will be forwarded directly to my email.</p>
-
+    <div class="container">
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="section-header">
+            <h2 class="section-title">Let's Work Together</h2>
+            <p class="section-subtitle">Ready to bring your ideas to life? Let's discuss your project</p>
+          </div>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">📧</div>
+              <div class="contact-text">
+                <h4>Email</h4>
+                <a href="mailto:fredinaldasare@gmail.com">fredinaldasare@gmail.com</a>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div class="contact-text">
+                <h4>Phone</h4>
+                <a href="tel:+233555247890">+233 555 247 890</a>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div class="contact-text">
+                <h4>Location</h4>
+                <span>Ghana, West Africa</span>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">🎓</div>
+              <div class="contact-text">
+                <h4>Education</h4>
+                <span>KNUST Student</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="GitHub">
+              <span class="social-icon">🐙</span>
+            </a>
+            <a href="#" class="social-link" aria-label="LinkedIn">
+              <span class="social-icon">💼</span>
+            </a>
+            <a href="#" class="social-link" aria-label="Twitter">
+              <span class="social-icon">🐦</span>
+            </a>
+            <a href="mailto:fredinaldasare@gmail.com" class="social-link" aria-label="Email">
+              <span class="social-icon">📧</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="contact-form-container">
   <form id="contactForm" class="contact-form" action="https://formspree.io/f/mvgqeoek" method="POST">
+            <div class="form-group">
     <input type="text" name="name" id="name" placeholder="Your Name" required>
+            </div>
+            
+            <div class="form-group">
     <input type="email" name="email" id="email" placeholder="Your Email" required>
-    <textarea name="message" id="message" placeholder="Tell me what you need..." required></textarea>
-
-    <label class="inline">
-      <input type="checkbox" name="requestPurchase" id="requestPurchase"> I want to purchase a product
+            </div>
+            
+            <div class="form-group">
+              <select name="subject" id="subject" required>
+                <option value="">Select a subject</option>
+                <option value="web-development">Web Development</option>
+                <option value="mobile-development">Mobile Development</option>
+                <option value="ui-ux-design">UI/UX Design</option>
+                <option value="custom-solution">Custom Solution</option>
+                <option value="consultation">Consultation</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <textarea name="message" id="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="requestPurchase" id="requestPurchase">
+                <span class="checkmark"></span>
+                I want to purchase a product
     </label>
-    <input type="text" name="productName" id="productName" placeholder="Product name (if purchasing)" />
-
-    <button type="submit" id="contactSubmit">Submit</button>
+            </div>
+            
+            <div class="form-group" id="productNameGroup" style="display: none;">
+              <input type="text" name="productName" id="productName" placeholder="Product name">
+            </div>
+            
+            <button type="submit" id="contactSubmit" class="btn btn-primary">
+              <span>Send Message</span>
+              <div class="btn-loading">
+                <div class="spinner"></div>
+              </div>
+            </button>
   </form>
-
-  <div class="contact-info">
-    <p>📞 Phone: <a href="tel:+233555247890">0555247890</a></p>
-    <p>📧 Email: <a href="mailto:fredinaldasare@gmail.com">fredinaldasare@gmail.com</a></p>
+        </div>
+      </div>
   </div>
 </section>
 
@@ -165,12 +569,15 @@
 <div class="assistant-modal" id="assistantModal" aria-hidden="true">
   <div class="assistant-modal-content">
     <button class="assistant-close" id="assistantClose">×</button>
-    <h3>Need help booking a purchase?</h3>
-    <p>If you'd like to buy any of my software solutions, click the button below to open the contact form with the purchase option selected. Include the product name and any details — your request will be forwarded to fredinaldasare@gmail.com.</p>
+    <h3>AI Assistant</h3>
+    <p>Hi! I'm your AI assistant. Ask me anything about our services, projects, or company!</p>
     <div class="assistant-actions">
-      <button id="openPurchase" class="btn">Request Purchase</button>
-      <button id="openContact" class="btn secondary">Ask a Question</button>
+      <button class="btn primary" onclick="askAI('What services do you offer?')">Our Services</button>
+      <button class="btn secondary" onclick="askAI('Tell me about your projects')">Our Projects</button>
+      <button class="btn secondary" onclick="askAI('What technologies do you use?')">Technologies</button>
+      <button class="btn secondary" onclick="askAI('How can I contact you?')">Contact Info</button>
     </div>
+    <div id="ai-response" style="margin-top: 1rem; padding: 1rem; background: var(--navy-surface); border-radius: 8px; display: none;"></div>
   </div>
 </div>
 
@@ -242,7 +649,7 @@
       
       <div class="footer-bottom">
         <div class="footer-bottom-content">
-          <p class="copyright">© 2025 Asare Fredinald. All rights reserved.</p>
+          <p class="copyright">© 2024 Asare Fredinald. All rights reserved.</p>
           <p class="built-with">Built with ❤️ using React, HTML, CSS & JavaScript</p>
         </div>
       </div>
