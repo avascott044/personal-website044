@@ -562,14 +562,14 @@ const websiteKnowledge = {
       category: "Full Stack"
     },
     {
-      name: "Church Manager", 
+      name: "Church Management System", 
       description: "Comprehensive church management solution for member tracking, events, and finances",
       tech: ["React", "Firebase", "CSS3"],
       category: "Full Stack"
     },
     {
-      name: "Artisan Connect",
-      description: "Marketplace platform connecting artisans with clients for seamless service delivery",
+      name: "School Management System",
+      description: "Comprehensive school management platform for student records, attendance, and academic tracking",
       tech: ["React", "Express", "PostgreSQL"],
       category: "Web Development"
     }
