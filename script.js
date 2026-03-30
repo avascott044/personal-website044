@@ -1,63 +1,73 @@
-// Smooth scroll for nav links
-document.querySelectorAll("a[href^='#']").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    const targetId = link.getAttribute("href");
-    const targetElement = document.querySelector(targetId);
-    if (targetElement) {
-      targetElement.scrollIntoView({ 
-        behavior: "smooth",
+(() => {
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+  const STORAGE_KEY = 'avascottinc_theme';
+
+  // Theme (Dark/Light)
+  const applyTheme = (theme) => {
+    const t = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', t);
+    try { localStorage.setItem(STORAGE_KEY, t); } catch {}
+
+    const btn = document.getElementById('themeToggle');
+    if (btn) {
+      const isLight = t === 'light';
+      btn.setAttribute('aria-pressed', String(isLight));
+      btn.setAttribute('title', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+      btn.innerHTML = isLight ? '<span class="theme-icon">🌙</span><span class="theme-text">Dark</span>' : '<span class="theme-icon">☀️</span><span class="theme-text">Light</span>';
+    }
+  };
+
+  const getInitialTheme = () => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved === 'light' || saved === 'dark') return saved;
+    } catch {}
+    const prefersLight = window.matchMedia?.('(prefers-color-scheme: light)')?.matches;
+    return prefersLight ? 'light' : 'dark';
+  };
+
+  applyTheme(getInitialTheme());
+
+  document.getElementById('themeToggle')?.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    applyTheme(current === 'light' ? 'dark' : 'light');
+  });
+
+  // Smooth scroll for hash links (same-page)
+  document.querySelectorAll("a[href^='#']").forEach(link => {
+    link.addEventListener("click", e => {
+      const targetId = link.getAttribute("href");
+      if (!targetId || targetId === '#') return;
+
+      const targetElement = document.querySelector(targetId);
+      if (!targetElement) return;
+
+      e.preventDefault();
+      targetElement.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
         block: "start"
       });
-    }
+    }, { passive: false });
   });
-});
 
-// Fade-in effect on scroll
-const faders = document.querySelectorAll(".service-card, .portfolio-item, .testimonial-card, .about-description p, .skill-item");
+  // Fade-in effect on scroll
+  const faders = document.querySelectorAll(
+    ".service-card, .portfolio-item, .testimonial-card, .about-description p, .skill-item, .org-card"
+  );
 
-const appearOptions = {
-  threshold: 0.1,
-  rootMargin: "0px 0px -50px 0px"
-};
-
-const appearOnScroll = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("fade-in");
-      observer.unobserve(entry.target);
-    }
-  });
-}, appearOptions);
-
-faders.forEach(fader => {
-  appearOnScroll.observe(fader);
-});
-
-
-// Animate skill bars when section scrolls into view
-function initSkillBars() {
-  const progressBars = document.querySelectorAll(".progress-bar span");
-  const skillsSection = document.querySelector("#skills");
-  if (!skillsSection) return;
-
-  function animateBars() {
-    const sectionPos = skillsSection.getBoundingClientRect().top;
-    const screenPos = window.innerHeight / 1.2;
-    if (sectionPos < screenPos) {
-      progressBars.forEach(bar => {
-        const match = bar.getAttribute("style")?.match(/width:\s*([0-9]+%)/);
-        if (match) bar.style.width = match[1];
+  if (faders.length) {
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("fade-in");
+          observer.unobserve(entry.target);
+        }
       });
-      window.removeEventListener("scroll", animateBars);
-    }
+    }, { threshold: 0.12, rootMargin: "0px 0px -60px 0px" });
+
+    faders.forEach(fader => appearOnScroll.observe(fader));
   }
-
-  window.addEventListener("scroll", animateBars);
-}
-
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initSkillBars);
-else initSkillBars();
+})();
 
 // Portfolio Filtering
 (function(){
@@ -95,6 +105,84 @@ else initSkillBars();
   
   floatingElements.forEach((element, index) => {
     element.style.animationDelay = `${index * 1.5}s`;
+  });
+})();
+
+// Skills cards progress (index.html skill cards)
+(function(){
+  const skillCards = document.querySelectorAll('.skill-card');
+  if (!skillCards.length) return;
+
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
+
+  const isElementInViewport = (el) => {
+    const rect = el.getBoundingClientRect();
+    return rect.bottom > 0 && rect.top < window.innerHeight * 0.85;
+  };
+
+  const animateCard = (card) => {
+    if (card.classList.contains('animated')) return;
+    card.classList.add('animated');
+
+    const bar = card.querySelector('.skill-progress');
+    const percentageEl = card.querySelector('.skill-percentage');
+    const widthRaw = bar?.dataset?.width ?? bar?.getAttribute?.('data-width') ?? '0';
+    const width = Number.parseFloat(widthRaw);
+
+    const target = Number.isFinite(width) ? Math.max(0, Math.min(100, width)) : 0;
+
+    if (bar) {
+      bar.style.width = '0%';
+      requestAnimationFrame(() => {
+        bar.style.width = target + '%';
+      });
+    }
+
+    if (percentageEl) {
+      percentageEl.textContent = '0%';
+      if (prefersReducedMotion) {
+        percentageEl.textContent = target + '%';
+        return;
+      }
+
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 20));
+      const timer = setInterval(() => {
+        current = Math.min(target, current + step);
+        percentageEl.textContent = current + '%';
+        if (current >= target) clearInterval(timer);
+      }, 30);
+    }
+  };
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCard(entry.target);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  const observeOrAnimateVisible = () => {
+    document.querySelectorAll('.skill-card').forEach(card => {
+      // if filtering hides it, skip for now
+      if (getComputedStyle(card).display === 'none') return;
+
+      if (card.classList.contains('animated')) return;
+      if (isElementInViewport(card)) animateCard(card);
+      else observer.observe(card);
+    });
+  };
+
+  observeOrAnimateVisible();
+
+  // If the portfolio filter reveals skills, ensure animation can run
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // wait for DOM styles to apply
+      setTimeout(observeOrAnimateVisible, 60);
+    });
   });
 })();
 
@@ -229,6 +317,10 @@ else initSkillBars();
   
   // Active section indicator
   function updateActiveSection() {
+    // Only run on pages that actually have hash navigation links.
+    const hasHashNav = Array.from(navItems).some(item => (item.getAttribute('href') || '').startsWith('#'));
+    if (!hasHashNav) return;
+
     const sections = document.querySelectorAll('section[id]');
     const scrollPos = window.scrollY + 100;
     
@@ -248,10 +340,18 @@ else initSkillBars();
     });
   }
   
-  window.addEventListener('scroll', () => {
-    handleScroll();
-    updateActiveSection();
-  });
+  let ticking = false;
+  const onScroll = () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      handleScroll();
+      updateActiveSection();
+    });
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
   
   handleScroll(); // Initial check
   updateActiveSection(); // Initial check
@@ -316,94 +416,48 @@ else initSkillBars();
   titles.forEach(t => obs.observe(t));
 })();
 
-// When skills section enters view, set CSS variables to animate fills
-(function(){
-  const skillsSection = document.querySelector('.skills-section');
-  if (!skillsSection) return;
-
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        skillsSection.classList.add('in-view');
-        // set --fill for each progress bar based on inline width
-        document.querySelectorAll('.skills-section .progress-bar span').forEach(span => {
-          const match = span.getAttribute('style')?.match(/width:\s*([0-9]+%)/);
-          if (match) span.style.setProperty('--fill', match[1]);
-        });
-      }
-    });
-  }, { threshold: 0.25 });
-
-  observer.observe(skillsSection);
-})();
-
 // Show image-box names as placeholders (if empty) and make them clickable
 (function(){
   document.querySelectorAll('.image-box').forEach(box => {
     const name = box.getAttribute('data-name') || '';
-    if (name) box.textContent = name;
+    if (name && !box.textContent.trim()) box.textContent = name;
+    box.style.backgroundRepeat = 'no-repeat';
     box.addEventListener('click', () => {
-      // placeholder click - later can open modal or link
-      alert(name + ' — more details coming soon.');
+      alert(name ? (name + ' — more details coming soon.') : 'More details coming soon.');
     });
   });
 })();
 
-// Animate skill numbers and progress fills when skills section becomes visible
+// Skills: animate once when section is visible (no duplicate observers)
 (function(){
   const skillsSection = document.querySelector('.skills-section');
   if (!skillsSection) return;
+
+  const animate = () => {
+    document.querySelectorAll('.skill-card').forEach(card => {
+      if (card.classList.contains('animate')) return;
+      card.classList.add('animate');
+
+      const target = parseInt(card.getAttribute('data-percent') || '0', 10);
+      const percentEl = card.querySelector('.skill-percent');
+      const bar = card.querySelector('.progress-bar span');
+      if (percentEl) percentEl.textContent = target + '%';
+      if (bar) bar.style.width = target + '%';
+    });
+  };
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         skillsSection.classList.add('in-view');
-
-        document.querySelectorAll('.skill-card').forEach(card => {
-          if (card.classList.contains('animate')) return;
-          card.classList.add('animate');
-          const target = parseInt(card.getAttribute('data-percent') || '0', 10);
-          const percentEl = card.querySelector('.skill-percent');
-          const bar = card.querySelector('.progress-bar span');
-
-          // animate number
-          let current = 0;
-          const step = Math.max(1, Math.floor(target / 20));
-          const timer = setInterval(() => {
-            current = Math.min(target, current + step);
-            percentEl.textContent = current + '%';
-            if (current >= target) clearInterval(timer);
-          }, 40);
-
-          // fill bar
-          setTimeout(() => { bar.style.width = target + '%'; }, 80);
-        });
+        animate();
+        observer.unobserve(skillsSection);
       }
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.22 });
 
   observer.observe(skillsSection);
 })();
-
-// Initialize skill percents and bars to data-percent so they correspond
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.skill-card').forEach(card => {
-    const target = parseInt(card.getAttribute('data-percent') || '0', 10);
-    const percentEl = card.querySelector('.skill-percent');
-    const bar = card.querySelector('.progress-bar span');
-    if (!percentEl || !bar) return;
-    // Set visible percent and bar fill to match data-percent
-    percentEl.textContent = target + '%';
-    bar.style.width = target + '%';
-    // mark as already set so the observer doesn't re-run counting animation
-    card.classList.add('animate');
-  });
-});
-
-// Ensure portfolio image-box backgrounds don't repeat
-document.querySelectorAll('.image-box').forEach(b => {
-  b.style.backgroundRepeat = 'no-repeat';
-});
 
 // Count Animation for Stats
 (function(){
@@ -440,89 +494,7 @@ document.querySelectorAll('.image-box').forEach(b => {
   });
 })();
 
-// Skill Progress Animation
-(function(){
-  function initSkillProgress() {
-    const skillCards = document.querySelectorAll('.skill-card');
-    
-    console.log('Found skill cards:', skillCards.length);
-    
-    // Function to animate percentage numbers
-    const animatePercentage = (element, target) => {
-      console.log('Animating percentage from 0 to', target);
-      const duration = 2000; // 2 seconds
-      const increment = target / (duration / 16); // 60fps
-      let current = 0;
-      
-      // Ensure element exists and reset to 0
-      if (element) {
-        element.textContent = '0%';
-        
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            current = target;
-            clearInterval(timer);
-            console.log('Percentage animation complete:', target + '%');
-          }
-          element.textContent = Math.floor(current) + '%';
-        }, 16);
-      } else {
-        console.log('Element not found for percentage animation');
-      }
-    };
-    
-    const animateSkillCard = (card) => {
-      if (card.classList.contains('animated')) return;
-      
-      card.classList.add('animated');
-      
-      const skillBar = card.querySelector('.skill-progress');
-      const percentageEl = card.querySelector('.skill-percentage');
-      const width = skillBar ? skillBar.getAttribute('data-width') : null;
-      
-      console.log('Animating skill card:', card, 'Width:', width, 'Percentage element:', percentageEl);
-      
-      if (skillBar && width) {
-        // Animate progress bar
-        skillBar.style.width = '0%';
-        setTimeout(() => {
-          skillBar.style.width = width + '%';
-        }, 100);
-        
-        // Animate percentage
-        if (percentageEl) {
-          setTimeout(() => {
-            animatePercentage(percentageEl, parseInt(width));
-          }, 200);
-        }
-      }
-    };
-    
-    // Intersection Observer for skill cards
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          console.log('Skill card is intersecting, animating...');
-          animateSkillCard(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    skillCards.forEach((card, index) => {
-      console.log(`Observing skill card ${index}:`, card);
-      observer.observe(card);
-    });
-  }
-  
-  // Initialize immediately if DOM is ready, otherwise wait
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSkillProgress);
-  } else {
-    initSkillProgress();
-  }
-})();
+// (Removed duplicate skill progress animation block that caused glitches and extra work on scroll.)
 
 
 // AI Assistant Knowledge Base
@@ -669,138 +641,6 @@ const websiteKnowledge = {
 
 
 
-// Show image-box names as placeholders (if empty) and make them clickable
-
-(function(){
-
-  document.querySelectorAll('.image-box').forEach(box => {
-
-    const name = box.getAttribute('data-name') || '';
-
-    if (name) box.textContent = name;
-
-    box.addEventListener('click', () => {
-
-      // placeholder click - later can open modal or link
-
-      alert(name + ' — more details coming soon.');
-
-    });
-
-  });
-
-})();
-
-
-
-// Animate skill numbers and progress fills when skills section becomes visible
-
-(function(){
-
-  const skillsSection = document.querySelector('.skills-section');
-
-  if (!skillsSection) return;
-
-
-
-  const observer = new IntersectionObserver(entries => {
-
-    entries.forEach(entry => {
-
-      if (entry.isIntersecting) {
-
-        skillsSection.classList.add('in-view');
-
-
-
-        document.querySelectorAll('.skill-card').forEach(card => {
-
-          if (card.classList.contains('animate')) return;
-
-          card.classList.add('animate');
-
-          const target = parseInt(card.getAttribute('data-percent') || '0', 10);
-
-          const percentEl = card.querySelector('.skill-percent');
-
-          const bar = card.querySelector('.progress-bar span');
-
-
-
-          // animate number
-
-          let current = 0;
-
-          const step = Math.max(1, Math.floor(target / 20));
-
-          const timer = setInterval(() => {
-
-            current = Math.min(target, current + step);
-
-            percentEl.textContent = current + '%';
-
-            if (current >= target) clearInterval(timer);
-
-          }, 40);
-
-
-
-          // fill bar
-
-          setTimeout(() => { bar.style.width = target + '%'; }, 80);
-
-        });
-
-      }
-
-    });
-
-  }, { threshold: 0.25 });
-
-
-
-  observer.observe(skillsSection);
-
-})();
-
-
-
-// Initialize skill percents and bars to data-percent so they correspond
-
-document.addEventListener('DOMContentLoaded', () => {
-
-  document.querySelectorAll('.skill-card').forEach(card => {
-
-    const target = parseInt(card.getAttribute('data-percent') || '0', 10);
-
-    const percentEl = card.querySelector('.skill-percent');
-
-    const bar = card.querySelector('.progress-bar span');
-
-    if (!percentEl || !bar) return;
-
-    // Set visible percent and bar fill to match data-percent
-
-    percentEl.textContent = target + '%';
-
-    bar.style.width = target + '%';
-
-    // mark as already set so the observer doesn't re-run counting animation
-
-    card.classList.add('animate');
-
-  });
-
-});
-
-
-
-// Ensure portfolio image-box backgrounds don't repeat
-
-document.querySelectorAll('.image-box').forEach(b => {
-
-  b.style.backgroundRepeat = 'no-repeat';
-
-});
+// (Removed duplicated image-box / skills blocks.)
 
 
