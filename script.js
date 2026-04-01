@@ -195,8 +195,9 @@
   const btnText = submitBtn.querySelector('span');
   const btnLoading = submitBtn.querySelector('.btn-loading');
 
-  // use action attribute if provided (allows user to supply Formspree ID)
-  const endpoint = contactForm.getAttribute('action') || 'https://formspree.io/f/mvgqeoek';
+  // Vanilla JS (AJAX) Formspree integration using configured endpoint.
+  // Uses form action when present, with a safe fallback.
+  const endpoint = contactForm.getAttribute('action') || 'https://formspree.io/f/xbdpkgeo';
   
   contactForm.addEventListener('submit', function(e){
     e.preventDefault();
